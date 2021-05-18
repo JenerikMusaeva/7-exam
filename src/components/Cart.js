@@ -7,10 +7,6 @@ export default function Cart({ data, removeFromCart, openCart, toggleCart }) {
 
   let currencyValue = currency.currencyList[currency.selected];
 
-  console.log(data);
-
-  let total = 0
-
   return (
     <div className={`cart ${openCart ? "open" : ""}`}>
       <button className="btn_close_cart" onClick={toggleCart}>
@@ -40,10 +36,7 @@ export default function Cart({ data, removeFromCart, openCart, toggleCart }) {
           })}
 
           <div className="total_price">
-            Total price:
-            {data.dishes.map((dish) => {
-              return (total = total + dish.quantity * dish.price);
-            })}
+            Total price: {data.totalPrice}
           </div>
 
           <Link to="/checkout">

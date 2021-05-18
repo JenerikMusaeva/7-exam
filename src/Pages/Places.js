@@ -1,39 +1,29 @@
-import { useEffect, useReducer } from "react";
-import placesReducer from '../reducers/placesReducers'
+import { useEffect, useState } from 'react'
 import Place from '../components/Place'
 
-
-export default function Places() {
-
-  // let [ loading, setLoading ] = useState(true)
-
-  let [ {places, loading}, dispatch] = useReducer(placesReducer, {
-    places: [],
-    loading: true,
-  });
+export default function Places({ setPlaces, places }) {
+  let [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch("http://localhost:1717/eats/places/")
-      .then((r) => r.json())
+    fetch('http://localhost:1717/eats/places/')
+      .then(r => r.json())
       .then((data) => {
-        dispatch({type: 'SET_PLACES', payload: data });
+        setPlaces(data);
+        setLoading(false);
       });
-  }, []);
-
-  console.log(places)
+  }, [])
 
   return (
     <>
       {loading ? (
         <div> Loading</div>
       ) : (
-        <div className="places">
-          {places.map((place) => (
+        <div className='places'>
+          {places.map(place => (
             <Place data={place} />
           ))}
         </div>
       )}
-
     </>
-  );
+  )
 }

@@ -2,7 +2,7 @@ import { useState} from 'react'
 import { Link } from "react-router-dom";
 import Currency from './Currency'
 
-export default function Header({toggleCart, handleCurrencyChange }) {
+export default function Header({toggleCart, handleCurrencyChange, quantity }) {
 
   return (
     <div className="header">
@@ -18,7 +18,7 @@ export default function Header({toggleCart, handleCurrencyChange }) {
           Register
         </button>
         <a onClick={toggleCart} className="icon-link">
-          <i className="icon-basket"></i>
+          <i className="icon-basket"></i> {quantity}
         </a>
       </div>
     </div>

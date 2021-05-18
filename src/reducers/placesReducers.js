@@ -1,12 +1,11 @@
-export default function placeReducer(state, action) {
+export default function placesReducer(state, action) {
   switch (action.type) {
-    case "SET_PLACES":
+    case 'SET_PLACES':
       return {
         ...state,
         places: action.payload,
-        loading: false,
-      };
-      break;
+      }
+      break
 
     default:
       return state;

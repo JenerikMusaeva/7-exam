@@ -4,7 +4,6 @@ export default function dishesReducer (state, action) {
       return {
         ...state,
         dishes: action.payload,
-        loading: false,
       };
       break;
 
