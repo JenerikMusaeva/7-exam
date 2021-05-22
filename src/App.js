@@ -95,7 +95,7 @@ function App() {
         <div className='content'>
           <Switch>
             <Route path='/checkout' exact>
-              <CheckOut data={cart} removeFromCart={removeFromCart} />
+              <CheckOut data={cart} removeFromCart={removeFromCart} setOpenCart={setOpenCart} />
             </Route>
             <Route path='/dishes/:placeid'>
               <Dishes places={places} dishes={dishes} updateDishes={updateDishes} />

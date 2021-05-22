@@ -1,51 +1,48 @@
-import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { AppContext } from "../App";
+import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { AppContext } from '../App'
 
 export default function Cart({ data, removeFromCart, openCart, toggleCart }) {
-  let { currency } = useContext(AppContext);
+  let { currency } = useContext(AppContext)
 
-  let currencyValue = currency.currencyList[currency.selected];
+  let currencyValue = currency.currencyList[currency.selected]
 
   return (
-    <div className={`cart ${openCart ? "open" : ""}`}>
-      <button className="btn_close_cart" onClick={toggleCart}>
+    <div className={`cart ${openCart ? 'open' : ''}`}>
+      <button className='btn_close_cart' onClick={toggleCart}>
         &#10006;
       </button>
       {!!data.dishes.length ? (
-        <div className="cart_items">
-          {data.dishes.map((dish) => {
+        <div className='cart_items'>
+          {data.dishes.map(dish => {
             return (
-              <div className="cart_item">
+              <div className='cart_item'>
                 <div>{dish.name}</div>
                 <div>
                   {dish.quantity} x ({dish.price * currencyValue}
-                  {currency.selected}) =
-                  {dish.price * currencyValue * dish.quantity}
+                  {currency.selected}) ={Math.round(dish.price * currencyValue) * dish.quantity}
                   {currency.selected}
                 </div>
                 <button
                   onClick={() => {
-                    removeFromCart(dish.id);
+                    removeFromCart(dish)
                   }}
                 >
                   X
                 </button>
               </div>
-            );
+            )
           })}
 
-          <div className="total_price">
-            Total price: {data.totalPrice}
-          </div>
+          <div className='total_price'>Total price: {Math.round(data.totalPrice* currencyValue)} {currency.selected}</div>
 
-          <Link to="/checkout">
-            <div className="btn_to_checkout">Check out</div>
+          <Link to='/checkout'>
+            <div className='btn_to_checkout'>Check out</div>
           </Link>
         </div>
       ) : (
         <h3>Cart is empty!</h3>
       )}
     </div>
-  );
+  )
 }
